@@ -1,0 +1,22 @@
+# Dependencies and generated build output
+/node_modules/
+/dist/
+/.vite/
+/coverage/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Temporary exports and local previews
+/.tmp-*/
+/tmp/
+*.tmp
+*.temp
+*.bak
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
