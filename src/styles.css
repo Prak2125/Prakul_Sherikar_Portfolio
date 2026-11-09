@@ -735,63 +735,42 @@ body::before { opacity: .055; }
 .coldplate-balance-note { display: grid; gap: 6px; margin: 0; padding: 13px 15px; border: 1px dashed #bdb5a8; border-radius: 8px; color: #656159; background: #f5f3ee; font-size: 10px; line-height: 1.65; }
 .coldplate-balance-note .micro-label { color: #76563f; }
 
-.cnc-fea-case { padding: 20px; border: 1px solid #d8d2c9; border-radius: 11px; background: #f8f6f1; }
-.cnc-fea-case__heading { max-width: 800px; margin-bottom: 17px; }
-.cnc-fea-case__heading > .eyebrow { display: block; margin-bottom: 7px; }
-.cnc-fea-case__heading > h2 { margin-bottom: 9px; }
-.cnc-fea-case__heading > p { margin: 0; }
-.cnc-fea-pair { display: grid; gap: 12px; padding: 14px; border: 1px solid #e0dbd2; border-radius: 9px; background: #fffefa; }
-.cnc-fea-pair__figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; align-items: start; }
-.cnc-fea-pair__figures figure, .cnc-fea-result figure { min-width: 0; margin: 0; padding: 7px; border: 1px solid #e4e0d8; border-radius: 7px; background: #f7f6f2; }
-.cnc-fea-pair__figures img, .cnc-fea-result img { display: block; width: 100%; max-height: 330px; object-fit: contain; object-position: center; background: #e9edf7; }
-.cnc-fea-pair__figures figcaption, .cnc-fea-result figcaption { padding: 7px 2px 1px; color: #5f5c54; font-size: 9px; line-height: 1.55; }
-.cnc-fea-pair__copy, .cnc-fea-result > div { display: grid; gap: 5px; }
-.cnc-fea-pair__copy > p, .cnc-fea-result > div > p { margin: 0; color: #5f5c54; font-size: 10px; line-height: 1.7; }
-.cnc-fea-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
-.cnc-fea-result { display: grid; align-content: start; gap: 10px; min-width: 0; padding: 12px; border: 1px solid #e0dbd2; border-radius: 9px; background: #fffefa; }
-.cnc-fea-result--paired { grid-column: 1 / -1; }
-.cnc-fea-result--paired .cnc-fea-pair__figures img { max-height: 300px; }
-.cnc-fea-caveat { margin: 12px 0 0; padding: 11px 13px; border-left: 3px solid #9a765e; color: #56534c; background: #f0eee8; font-size: 10px; line-height: 1.65; }
-@media (max-width: 640px) {
-  .cnc-fea-case { padding: 14px; }
-  .cnc-fea-pair { padding: 10px; }
-  .cnc-fea-pair__figures, .cnc-fea-results { grid-template-columns: 1fr; }
-  .cnc-fea-result--paired { grid-column: auto; }
-  .cnc-fea-pair__figures img, .cnc-fea-result img, .cnc-fea-result--paired .cnc-fea-pair__figures img { max-height: 300px; }
-}
-
 .baja-project-grid--front { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .baja-project-grid--research { grid-template-columns: minmax(0, 380px); }
 .baja-portal-research { margin-top: 32px; padding-top: 30px; border-top: 1px solid var(--line); }
 .baja-portal-research .baja-project-card__body > span:nth-last-child(2) { min-height: 0; }
 
-.cnc-fea-case__heading > p { max-width: none; font-size: 12px; line-height: 1.75; }
-.cnc-fea-load-summary { display: grid; grid-template-columns: auto 1fr; align-items: baseline; gap: 4px 13px; margin-bottom: 13px; padding: 12px 15px; border-left: 3px solid #987158; background: #f0eee8; }
-.cnc-fea-load-summary .micro-label { grid-row: span 2; align-self: center; }
-.cnc-fea-load-summary strong { color: #393730; font-family: var(--display); font-size: 15px; letter-spacing: -.02em; }
-.cnc-fea-load-summary strong span { color: #94745b; }
-.cnc-fea-load-summary small { color: #706c63; font-size: 9px; }
-.cnc-fea-decision-list { display: grid; gap: 12px; margin-top: 13px; }
-.cnc-fea-decision { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(250px, .92fr); gap: 18px; align-items: center; min-width: 0; padding: 14px; border: 1px solid #e0dbd2; border-radius: 9px; background: #fffefa; }
-.cnc-fea-decision > figure, .cnc-fea-decision__supporting-figure > figure { min-width: 0; margin: 0; padding: 7px; border: 1px solid #e4e0d8; border-radius: 7px; background: #f7f6f2; }
-.cnc-fea-decision img { display: block; width: 100%; max-height: 360px; object-fit: contain; object-position: center; background: #e9edf7; }
-.cnc-fea-decision figcaption { padding: 7px 2px 1px; color: #5f5c54; font-size: 10px; line-height: 1.55; }
-.cnc-fea-decision > div:not(.cnc-fea-decision__supporting-figure) { min-width: 0; }
-.cnc-fea-decision > div > .micro-label, .cnc-fea-decision__copy > .micro-label { display: block; margin-bottom: 6px; color: #87634e; }
-.cnc-fea-decision h3 { margin: 0 0 8px; font-size: clamp(17px, 2vw, 21px); letter-spacing: -.035em; }
-.cnc-fea-decision p { margin: 0; color: #56534c; font-size: 11px; line-height: 1.75; }
-.cnc-fea-decision--preferred { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); grid-template-areas: 'plot support' 'plot copy'; align-items: start; }
-.cnc-fea-decision--preferred > figure { grid-area: plot; }
-.cnc-fea-decision__supporting-figure { grid-area: support; }
-.cnc-fea-decision__copy { grid-area: copy; }
-.cnc-fea-decision--preferred > figure img { max-height: 360px; }
-.cnc-fea-decision__supporting-figure img { max-height: 260px; }
-.cnc-case-study .cnc-fea-decision--thicker-wall { grid-template-columns: minmax(0, 1fr); align-items: start; }
-.cnc-fea-decision__paired-figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; min-width: 0; }
-.cnc-fea-decision__paired-figures > figure { min-width: 0; margin: 0; padding: 7px; border: 1px solid #e4e0d8; border-radius: 7px; background: #f7f6f2; }
-.cnc-fea-decision__paired-figures img { max-height: 340px; }
-.cnc-case-study .cnc-fea-decision--thicker-wall .cnc-fea-decision__copy { max-width: 90ch; }
-.cnc-fea-caveat { max-width: 980px; }
+.cnc-control-arm-evidence { min-width: 0; margin-top: 22px; }
+.cnc-control-arm-evidence__heading { max-width: 78ch; margin-bottom: 17px; }
+.cnc-control-arm-evidence__heading > .eyebrow { display: block; margin-bottom: 7px; }
+.cnc-control-arm-evidence__heading > h3 { margin: 0 0 9px; font-size: clamp(21px, 2.3vw, 27px); letter-spacing: -.04em; }
+.cnc-control-arm-evidence__heading > p { margin: 0; color: #56534c; font-size: 12px; line-height: 1.75; }
+.cnc-control-arm-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 17px 0 25px; border: 1px solid #ded8ce; border-radius: 8px; background: #f8f6f1; }
+.cnc-control-arm-summary > div { display: grid; align-content: start; gap: 4px; min-width: 0; padding: 12px 16px; }
+.cnc-control-arm-summary > div + div { border-left: 1px solid #ded8ce; }
+.cnc-control-arm-summary > div > span { color: #6a6258; font-size: 10px; line-height: 1.45; }
+.cnc-control-arm-summary strong { color: #393730; font-family: var(--display); font-size: clamp(16px, 1.8vw, 20px); letter-spacing: -.025em; }
+.cnc-control-arm-summary small { color: #706c63; font-size: 10px; line-height: 1.45; }
+.cnc-control-arm-stages { display: grid; gap: 23px; }
+.cnc-control-arm-stage { min-width: 0; padding: 21px 0 0; border-top: 1px solid var(--line); }
+.cnc-control-arm-stage__copy { max-width: 78ch; margin-bottom: 15px; }
+.cnc-control-arm-stage__copy > .micro-label { display: block; margin-bottom: 6px; color: #87634e; }
+.cnc-control-arm-stage__copy > h4 { margin: 0 0 7px; font-size: clamp(18px, 2vw, 22px); letter-spacing: -.035em; }
+.cnc-control-arm-stage__copy > p { margin: 0; color: #56534c; font-size: 12px; line-height: 1.7; }
+.cnc-control-arm-stage__figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(13px, 2vw, 22px); align-items: start; width: 100%; min-width: 0; }
+.cnc-control-arm-stage .cnc-fea-evidence-figure { align-self: start; min-width: 0; width: 100%; max-width: none; margin: 0; padding: 9px; border: 1px solid #e4e0d8; border-radius: 7px; background: #f7f6f2; }
+.cnc-fea-evidence-figure__trigger { position: relative; display: block; min-width: 0; width: 100%; max-width: none; box-sizing: border-box; padding: 0; border: 0; border-radius: 4px; background: #e9edf7; cursor: zoom-in; }
+.cnc-fea-evidence-figure__trigger img { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; object-position: center; }
+.cnc-fea-evidence-figure__trigger > span { position: absolute; right: 8px; bottom: 8px; padding: 5px 8px; border-radius: 4px; color: #fff; background: rgb(31 29 26 / 82%); font-size: 10px; }
+.cnc-fea-evidence-figure__trigger:focus-visible, .cnc-fea-image-dialog__bar button:focus-visible { outline: 3px solid #9b7655; outline-offset: 3px; }
+.cnc-fea-evidence-figure figcaption { display: grid; gap: 4px; max-width: none; padding: 8px 2px 1px; color: #4c4942; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.cnc-fea-evidence-figure figcaption span { color: #81796e; font-size: 10px; }
+.cnc-fea-image-dialog { width: min(96vw, 1500px); max-width: 96vw; max-height: 94dvh; padding: 12px; overflow: auto; border: 1px solid #ded8ce; border-radius: 10px; background: #f7f5ef; color: #35312c; }
+.cnc-fea-image-dialog::backdrop { background: rgb(24 22 19 / 76%); }
+.cnc-fea-image-dialog__bar { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 2px 2px 10px; font-size: 13px; }
+.cnc-fea-image-dialog__bar button { flex: 0 0 auto; padding: 7px 11px; border: 1px solid #cbc3b8; border-radius: 5px; background: #fffdf9; color: #3e3932; cursor: pointer; font: inherit; }
+.cnc-control-arm-stage .cnc-fea-image-dialog > img { display: block; width: 100%; max-height: calc(94dvh - 64px); object-fit: contain; background: #252525; }
+.cnc-fea-caveat { max-width: 980px; margin: 17px 0 0; }
 .project-detail-page--coldplate .project-detail-hero { max-width: 1000px; }
 .project-detail-grid--coldplate { grid-template-columns: minmax(150px, .3fr) minmax(0, 1fr); gap: clamp(26px, 4vw, 54px); }
 .project-detail-grid--coldplate .project-detail-content { gap: 39px; }
@@ -816,11 +795,9 @@ body::before { opacity: .055; }
   .baja-project-grid--front, .baja-project-grid--research { grid-template-columns: minmax(0, 1fr); }
   .baja-project-grid--research { max-width: none; }
   .project-detail-grid--coldplate { grid-template-columns: 1fr; }
-  .cnc-fea-decision, .cnc-fea-decision--preferred { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'plot' 'support' 'copy'; gap: 11px; padding: 11px; }
-  .cnc-fea-load-summary { grid-template-columns: 1fr; }
-  .cnc-fea-load-summary .micro-label { grid-row: auto; }
-  .cnc-fea-load-summary strong { font-size: 14px; }
-  .cnc-fea-decision--preferred > figure img, .cnc-fea-decision__supporting-figure img { max-height: 300px; }
+  .cnc-control-arm-summary { grid-template-columns: minmax(0, 1fr); }
+  .cnc-control-arm-summary > div + div { border-top: 1px solid #ded8ce; border-left: 0; }
+  .cnc-control-arm-stage__figures { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .coldplate-figure-grid { grid-template-columns: 1fr; }
   .coldplate-comparison-notes { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .coldplate-table-scroll table, .coldplate-flow-copy .coldplate-table-scroll table { min-width: 730px; }
@@ -890,13 +867,8 @@ body::before { opacity: .055; }
 .cnc-case-study .cnc-overview__copy > h2 { max-width: 520px; font-size: clamp(25px, 2.8vw, 34px); line-height: 1.12; }
 .cnc-case-study .cnc-load-section__intro h2 { margin-bottom: 10px; font-size: clamp(25px, 2.8vw, 34px); line-height: 1.12; }
 .cnc-case-study .cnc-overview, .cnc-case-study .cnc-load-section { padding-bottom: 18px; border-bottom: 1px solid var(--line); }
-.cnc-case-study .cnc-fea-case { width: min(calc(100% + 28px), 1100px); margin-left: -14px; }
-.cnc-case-study .cnc-fea-case__heading > h3 { margin: 0 0 9px; font-size: clamp(21px, 2.3vw, 27px); letter-spacing: -.04em; }
-.cnc-case-study .cnc-fea-decision h4 { margin: 0 0 8px; font-size: clamp(16px, 1.8vw, 19px); letter-spacing: -.025em; }
 .cnc-case-study .baja-editorial-copy > h3 { margin: 0 0 12px; font-size: clamp(20px, 2.3vw, 27px); line-height: 1.13; letter-spacing: -.045em; }
 .cnc-case-study .baja-failure-note > h3 { margin: 0 0 10px; font-size: clamp(20px, 2.3vw, 27px); }
-.cnc-case-study .cnc-fea-decision-list { gap: 16px; }
-.cnc-case-study .cnc-fea-decision { padding: 16px; }
 .coldplate-case-study { margin-top: 4px; }
 .coldplate-study__heading h2 { font-size: clamp(24px, 2.65vw, 32px); line-height: 1.15; }
 .coldplate-study__subheading { margin: 0 0 12px; font-size: clamp(16px, 1.8vw, 20px); letter-spacing: -.025em; }
@@ -915,7 +887,6 @@ body::before { opacity: .055; }
   .on-this-page-mobile summary { display: flex; justify-content: space-between; gap: 12px; padding: 12px 14px; color: #403a33; font-size: 13px; font-weight: 650; cursor: pointer; }
   .on-this-page-mobile nav { padding: 0 10px 10px; }
   .cnc-case-study .baja-editorial-row { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'figure' 'copy'; }
-  .cnc-case-study .cnc-fea-case { width: 100%; margin-left: 0; padding: 14px; }
   .coldplate-case-study .coldplate-editorial-row { grid-template-columns: minmax(0, 1fr); }
   .coldplate-case-study .coldplate-figure img { max-height: 340px; }
 }
@@ -975,8 +946,6 @@ body::before { opacity: .055; }
 .cnc-case-study .baja-editorial-figure > .baja-editorial-image--initial-cad { height: clamp(270px, 31vw, 380px); }
 .cnc-case-study .baja-editorial-figure > .baja-editorial-image--combined { height: clamp(270px, 30vw, 370px); }
 .cnc-case-study .baja-editorial-figure > .baja-editorial-image--cad { height: clamp(230px, 26vw, 320px); }
-.cnc-case-study .cnc-fea-case { width: min(calc(100% + 28px), 1100px); margin-left: -14px; }
-.cnc-case-study .cnc-fea-decision img { max-height: 335px; }
 .cnc-case-study .cnc-manufacturing { padding: 18px; }
 
 .project-detail-page--coldplate .project-detail-hero { max-width: none; }
@@ -1023,7 +992,6 @@ body::before { opacity: .055; }
   .cnc-overview__model-key figure { width: min(100%, 260px); }
   .cnc-overview__model-key img { height: 190px; }
   .cnc-case-study .baja-editorial-row { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'figure' 'copy'; }
-  .cnc-case-study .cnc-fea-case { width: 100%; margin-left: 0; padding: 14px; }
   .cnc-case-study .baja-editorial-figure { width: min(100%, 440px); }
   .cnc-case-study .baja-editorial-figure > img,
   .cnc-case-study .baja-editorial-figure > .baja-editorial-image--initial-cad,
@@ -1136,9 +1104,6 @@ body::before { opacity: .055; }
   .baja-project-grid--front, .baja-project-grid--research { grid-template-columns: minmax(0, 1fr); }
   .baja-project-grid--research { max-width: none; }
   .project-detail-grid--coldplate { grid-template-columns: minmax(0, 1fr); }
-  .cnc-fea-decision, .cnc-fea-decision--preferred { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'plot' 'support' 'copy'; }
-  .cnc-fea-load-summary { grid-template-columns: minmax(0, 1fr); }
-  .cnc-fea-load-summary .micro-label { grid-row: auto; }
   .coldplate-editorial-row, .coldplate-figure-grid { grid-template-columns: minmax(0, 1fr); }
   .coldplate-figure img { max-height: 290px; }
   .coldplate-table-scroll table, .coldplate-flow-copy .coldplate-table-scroll table { min-width: 730px; }
@@ -1171,8 +1136,7 @@ body::before { opacity: .055; }
 .cnc-case-study .cnc-overview__narrative p,
 .cnc-case-study .cnc-overview__contribution li,
 .cnc-case-study .cnc-overview__constraints dd,
-.cnc-case-study .baja-detail-copy,
-.cnc-case-study .cnc-fea-decision p { max-width: 74ch; }
+.cnc-case-study .baja-detail-copy { max-width: 74ch; }
 .cnc-case-study .cnc-overview__contribution ul { display: grid; gap: 6px; margin: 0; padding-left: 18px; color: #56534c; font-size: 12px; line-height: 1.7; }
 .cnc-case-study .cnc-overview__constraints { grid-column: auto; }
 .cnc-case-study .cnc-overview__constraints dl { display: grid; gap: 0; margin: 0; }
@@ -1201,9 +1165,6 @@ body::before { opacity: .055; }
 .cnc-case-study .baja-editorial-figure > img { height: clamp(270px, 27vw, 390px); }
 .cnc-case-study .baja-editorial-figure > .baja-editorial-image--initial-cad,
 .cnc-case-study .baja-editorial-figure > .baja-editorial-image--combined { height: clamp(310px, 33vw, 440px); }
-.cnc-case-study .cnc-fea-case { width: 100%; margin-left: 0; }
-.cnc-case-study .cnc-fea-decision { grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); }
-.cnc-case-study .cnc-fea-decision--preferred { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
 .cnc-case-study .cnc-manufacturing { padding: 16px 0 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; background: transparent; }
 .cnc-case-study .cnc-manufacturing h3 { margin: 0 0 10px; font-size: clamp(19px, 2vw, 24px); letter-spacing: -.035em; }
 
@@ -1216,10 +1177,6 @@ body::before { opacity: .055; }
 @media (max-width: 900px) {
   .cnc-case-study .baja-editorial-row { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'figure' 'copy'; }
   .cnc-case-study .baja-editorial-figure { width: min(100%, 560px); }
-  .cnc-case-study .cnc-fea-decision,
-  .cnc-case-study .cnc-fea-decision--preferred { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'plot' 'support' 'copy'; }
-  .cnc-case-study .cnc-fea-decision--thicker-wall { grid-template-columns: minmax(0, 1fr); grid-template-areas: none; }
-  .cnc-case-study .cnc-fea-decision__paired-figures { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 780px) {
   .baja-workstream-page--cnc { width: calc(100% - 40px); }

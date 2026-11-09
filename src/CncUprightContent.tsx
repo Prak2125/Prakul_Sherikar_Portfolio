@@ -1,4 +1,4 @@
-import { lazy, Suspense, type ReactNode } from 'react'
+import { lazy, Suspense, useRef, type ReactNode } from 'react'
 import { OnThisPage, type PageSectionLink } from './components/OnThisPage'
 import { projectDetails } from './data/projectDetails'
 import { sitePath } from './sitePath'
@@ -33,12 +33,26 @@ function Editorial({ id, eyebrow, title, caption, figure, reverse = false, featu
 
 const controlArmFigures = {
   concentration: sitePath('/assets/projects/baja-cnc/control-arm-stress-closeup-max-470-37.png'),
-  mountCad: sitePath('/assets/projects/baja-cnc/control-arm-mount-cad-unassigned-revision.png'),
   thickerWallCad: sitePath('/assets/projects/baja-cnc/control-arm-thicker-wall-cad.png'),
   thickerWallFea: sitePath('/assets/projects/baja-cnc/control-arm-thicker-wall-fea-317-61-max.png'),
-  stress295: sitePath('/assets/projects/baja-cnc/control-arm-von-mises-295-43-mpa.png'),
   stress274: sitePath('/assets/projects/baja-cnc/control-arm-von-mises-274-05-mpa.png'),
   filletedCad: sitePath('/assets/projects/baja-cnc/control-arm-filleted-geometry-context.png'),
+}
+
+function CncEvidenceFigure({ src, alt, caption }: { src: string; alt: string; caption: string }) {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+
+  return <figure className="cnc-fea-evidence-figure">
+    <button className="cnc-fea-evidence-figure__trigger" type="button" aria-label={`Enlarge image: ${caption}`} onClick={() => dialogRef.current?.showModal()}>
+      <img src={src} alt={alt} loading="lazy" />
+      <span>Click to enlarge</span>
+    </button>
+    <figcaption>{caption}<span>Click image to enlarge</span></figcaption>
+    <dialog ref={dialogRef} className="cnc-fea-image-dialog" aria-label={`Enlarged figure: ${caption}`}>
+      <div className="cnc-fea-image-dialog__bar"><strong>{caption}</strong><button type="button" onClick={() => dialogRef.current?.close()}>Close image</button></div>
+      <img src={src} alt={alt} />
+    </dialog>
+  </figure>
 }
 
 const uprightCallouts = [
@@ -87,43 +101,42 @@ function AnnotatedUprightIllustration() {
 }
 
 function CncControlArmEvidence() {
-  return <section id="carm-title" className="baja-detail-section cnc-fea-case" aria-labelledby="carm-heading">
-    <div className="cnc-fea-case__heading"><span className="eyebrow">04A / LOWER CONTROL-ARM PICKUP</span><h3 id="carm-heading">Reinforcing the load path</h3><p className="baja-detail-copy">A control arm links the chassis to the upright. Its pickup is the joint where suspension loads enter the upright; this FEA iteration focused on strengthening that load path.</p></div>
+  return <section id="carm-title" className="baja-detail-section cnc-control-arm-evidence" aria-labelledby="carm-heading">
+    <div className="cnc-control-arm-evidence__heading"><span className="eyebrow">04A / LOWER CONTROL-ARM PICKUP</span><h3 id="carm-heading">Reinforcing the load path</h3><p className="baja-detail-copy">The lower control-arm pickup transfers suspension loads into the upright. I used FEA to assess this region, revise its geometry, and select the retained design.</p></div>
 
-    <div className="cnc-fea-load-summary"><span className="micro-label">COMBINED ANALYSIS ASSUMPTIONS</span><strong>7.15g vertical <span>+</span> 4g lateral <span>+</span> 2g braking</strong><small>Conservative design inputs, not measured competition loads.</small></div>
+    <div className="cnc-control-arm-summary" aria-label="Lower control-arm design revision summary">
+      <div><span>Initial geometry</span><strong>≈470 MPa</strong><small>Reinforcement required</small></div>
+      <div><span>Thicker-wall attempt</span><strong>≈317 MPa</strong><small>Rejected</small></div>
+      <div><span>Selected final geometry</span><strong>≈274 MPa</strong><small>Retained after reverting</small></div>
+    </div>
 
-    <div className="cnc-fea-decision-list">
-      <article className="cnc-fea-decision">
-        <figure><img src={controlArmFigures.concentration} alt="Initial analysis close-up with displayed maximum marker 470.37; source result title and units are cropped" loading="lazy" /><figcaption>Initial-analysis close-up · marker 470.37 · title and units cropped in source</figcaption></figure>
-        <div><span className="micro-label">ANALYSIS → REASON FOR CHANGE</span><h4>Initial finding at the pickup</h4><p>The initial FEA showed approximately 470 MPa peak stress at the lower control-arm pickup, above the 6061-T6 yield criterion used in the analysis. The source plot’s maximum marker reads 470.37, but its result title and units are cropped. Because the initial result exceeded the criterion, I explored reinforcement in the pickup’s load path.</p></div>
-      </article>
-
-      <article className="cnc-fea-decision cnc-fea-decision--geometry">
-        <figure><img src={controlArmFigures.mountCad} alt="CAD close-up of the lower control-arm mounting region" loading="lazy" /><figcaption>CAD view of the lower control-arm mounting region</figcaption></figure>
-        <div><span className="micro-label">GEOMETRY REFERENCE</span><h4>Understand the lower-arm pickup</h4><p>The lower pickup joins the control arm to the upright. This close-up shows the mounting region and connecting web around the area addressed by the reinforcement study.</p></div>
-      </article>
-
-      <article className="cnc-fea-decision cnc-fea-decision--thicker-wall">
-        <div className="cnc-fea-decision__paired-figures">
-          <figure><img src={controlArmFigures.thickerWallCad} alt="CAD close-up of the thicker-wall control-arm pickup model, with the selected region highlighted in the source" loading="lazy" /><figcaption>Thicker-wall model · original CAD selection retained</figcaption></figure>
-          <figure><img src={controlArmFigures.thickerWallFea} alt="FEA close-up showing a 317.61 Max marker and contour legend; result title and units are cropped from the source" loading="lazy" /><figcaption>Displayed maximum: 317.61 · result title and units cropped in source</figcaption></figure>
+    <div className="cnc-control-arm-stages">
+      <article className="cnc-control-arm-stage">
+        <div className="cnc-control-arm-stage__copy"><span className="micro-label">01 / INITIAL DESIGN</span><h4>Initial geometry — reinforcement required</h4><p>The initial FEA showed approximately 470 MPa peak stress at the lower control-arm pickup, above the 6061-T6 yield criterion used in the analysis. That finding led me to explore reinforcement in the pickup’s load path.</p></div>
+        <div className="cnc-control-arm-stage__figures">
+          <CncEvidenceFigure src={sitePath('/assets/projects/baja-cnc/initial-cnc-upright-before-fea.png')} alt="Original CNC upright CAD geometry before FEA-driven revisions" caption="Initial CNC upright geometry before FEA-driven reinforcement" />
+          <CncEvidenceFigure src={controlArmFigures.concentration} alt="Initial stress-concentration close-up with a 470.37 maximum marker; the source result title and units are cropped" caption="Initial FEA close-up · approximately 470 MPa; title and units cropped in source" />
         </div>
-        <div className="cnc-fea-decision__copy"><span className="micro-label">UNSUCCESSFUL REVISION / RETAINED GEOMETRY FOLLOWS</span><h4>Reject the thicker-wall attempt</h4><p>After the initial high-stress finding, subsequent revisions reduced the reported stress. In this thicker-wall model, the FEA crop displays a maximum marker of 317.61. Its result title and units are cropped, so I report the displayed marker without assigning a result type or unit. I rejected this model and returned to the earlier geometry; one later analysis run for the retained geometry reported 274.05 MPa. The result led me to assess the analysis response rather than assume that adding material would necessarily reduce peak stress.</p></div>
       </article>
 
-      <article className="cnc-fea-decision cnc-fea-decision--preferred">
-        <figure><img src={controlArmFigures.stress274} alt="Equivalent von Mises stress plot for the retained lower control-arm pickup geometry, showing a 274.05 MPa maximum" loading="lazy" /><figcaption>Retained geometry · later analysis run · Equivalent (von-Mises) Stress · MPa · 274.05 Max</figcaption></figure>
-        <div className="cnc-fea-decision__supporting-figure"><figure><img src={controlArmFigures.filletedCad} alt="CAD close-up of the retained lower control-arm pickup geometry" loading="lazy" /><figcaption>Retained geometry context · feature-level causation is not isolated</figcaption></figure></div>
-        <div className="cnc-fea-decision__copy"><span className="micro-label">REVERT → RETAINED GEOMETRY → LATER ANALYSIS</span><h4>Return to the earlier geometry</h4><p>After rejecting the thicker-wall attempt, I reverted to the earlier reinforced geometry shown here. One of the later analysis runs for this retained geometry reported 274.05 MPa equivalent von Mises stress. This is the retained design result in the confirmed history; it is not presented as a direct like-for-like comparison with the cropped 317.61 marker.</p></div>
+      <article className="cnc-control-arm-stage">
+        <div className="cnc-control-arm-stage__copy"><span className="micro-label">02 / THICKER-WALL REVISION — REJECTED</span><h4>Reject the thicker-wall attempt</h4><p>Subsequent reinforcement reduced the reported stress. This thicker-wall attempt showed 317.61 MPa; I rejected it and reverted to the earlier reinforced geometry. The sequence does not mean adding wall thickness alone reduced peak stress.</p></div>
+        <div className="cnc-control-arm-stage__figures">
+          <CncEvidenceFigure src={controlArmFigures.thickerWallCad} alt="CAD close-up of the thicker-wall lower control-arm pickup attempt" caption="CAD · thicker-wall revision" />
+          <CncEvidenceFigure src={controlArmFigures.thickerWallFea} alt="Stress plot with a 317.61 Max marker and contour legend; the result title is cropped from the source" caption="317.61 MPa stress · result title cropped in source" />
+        </div>
       </article>
 
-      <article className="cnc-fea-decision">
-        <figure><img src={controlArmFigures.stress295} alt="Separate equivalent von Mises stress plot showing a 295.43 MPa maximum" loading="lazy" /><figcaption>Separate analysis result · Equivalent (von-Mises) Stress · MPa · 295.43 Max</figcaption></figure>
-        <div><span className="micro-label">SEPARATE RESULT / SEQUENCE UNCONFIRMED</span><h4>Keep the 295.43 MPa result separate</h4><p>A separate source plot reports 295.43 MPa. The available record does not place it within the thicker-wall-to-reversion sequence, so it remains outside that comparison. A mesh-refinement check was also reported to leave the peak approximately similar, but its association with this result or the 317.61 run is not confirmed. The refinement note does not establish full mesh convergence.</p></div>
+      <article className="cnc-control-arm-stage">
+        <div className="cnc-control-arm-stage__copy"><span className="micro-label">03 / SELECTED FINAL DESIGN — 274.05 MPa</span><h4>Revert and retain the earlier geometry</h4><p>After rejecting the thicker-wall attempt, I returned to the earlier reinforced geometry. A later ANSYS run for the selected final design reports 274.05 MPa equivalent von Mises stress.</p></div>
+        <div className="cnc-control-arm-stage__figures">
+          <CncEvidenceFigure src={controlArmFigures.filletedCad} alt="CAD context of the selected final lower control-arm pickup geometry" caption="CAD context · selected final geometry" />
+          <CncEvidenceFigure src={controlArmFigures.stress274} alt="Equivalent von Mises stress plot for the selected final geometry showing a 274.05 MPa maximum" caption="Selected final design · 274.05 MPa equivalent von Mises stress" />
+        </div>
       </article>
     </div>
 
-    <p className="cnc-fea-caveat">The initial 470.37 and thicker-wall 317.61 plots omit result titles and units in their source crops; the initial design history separately identifies its finding as approximately 470 MPa. The 295.43 MPa plot and mesh-refinement note remain separate because their revision mapping is unconfirmed.</p>
+    <p className="cnc-fea-caveat">A separate mesh-refinement check was reported to leave the peak approximately similar. Its relationship to the displayed runs is unconfirmed.</p>
   </section>
 }
 
