@@ -120,7 +120,7 @@ function CncControlArmEvidence() {
       </article>
 
       <article className="cnc-control-arm-stage">
-        <div className="cnc-control-arm-stage__copy"><span className="micro-label">02 / THICKER-WALL REVISION — REJECTED</span><h4>Reject the thicker-wall attempt</h4><p>Subsequent reinforcement reduced the reported stress. This thicker-wall attempt showed 317.61 MPa; I rejected it and reverted to the earlier reinforced geometry. The sequence does not mean adding wall thickness alone reduced peak stress.</p></div>
+        <div className="cnc-control-arm-stage__copy"><span className="micro-label">02 / THICKER-WALL REVISION — REJECTED</span><h4>Reject the thicker-wall attempt</h4><p>Subsequent reinforcement reduced reported stress, but this revision produced an elevated local peak. I refined the mesh locally around the stress concentration to investigate whether it persisted; the peak remained approximately similar after refinement. This informed my decision to reject the revision and return to the selected geometry. The available evidence does not identify which plotted run received refinement, so I do not assign this check to the 317.61 MPa result.</p></div>
         <div className="cnc-control-arm-stage__figures">
           <CncEvidenceFigure src={controlArmFigures.thickerWallCad} alt="CAD close-up of the thicker-wall lower control-arm pickup attempt" caption="CAD · thicker-wall revision" />
           <CncEvidenceFigure src={controlArmFigures.thickerWallFea} alt="Stress plot with a 317.61 Max marker and contour legend; the result title is cropped from the source" caption="317.61 MPa stress · result title cropped in source" />
@@ -128,7 +128,7 @@ function CncControlArmEvidence() {
       </article>
 
       <article className="cnc-control-arm-stage">
-        <div className="cnc-control-arm-stage__copy"><span className="micro-label">03 / SELECTED FINAL DESIGN — 274.05 MPa</span><h4>Revert and retain the earlier geometry</h4><p>After rejecting the thicker-wall attempt, I returned to the earlier reinforced geometry. A later ANSYS run for the selected final design reports 274.05 MPa equivalent von Mises stress.</p></div>
+        <div className="cnc-control-arm-stage__copy"><span className="micro-label">03 / SELECTED FINAL DESIGN — 274.05 MPa</span><h4>Revert and retain the earlier geometry</h4><p>After rejecting the thicker-wall revision, I reverted to the reinforced geometry that reported 274.05 MPa peak von Mises stress. I had selected a deliberately severe combined load case to prioritize survivability during endurance, rather than represent normal driving conditions. With the result below the yield criterion used in my analysis, I stopped pursuing further stress reduction because the changes I explored added upright mass. This was a trade-off between structural margin and unsprung mass under the selected analysis assumptions.</p></div>
         <div className="cnc-control-arm-stage__figures">
           <CncEvidenceFigure src={controlArmFigures.filletedCad} alt="CAD context of the selected final lower control-arm pickup geometry" caption="CAD context · selected final geometry" />
           <CncEvidenceFigure src={controlArmFigures.stress274} alt="Equivalent von Mises stress plot for the selected final geometry showing a 274.05 MPa maximum" caption="Selected final design · 274.05 MPa equivalent von Mises stress" />
@@ -136,7 +136,7 @@ function CncControlArmEvidence() {
       </article>
     </div>
 
-    <p className="cnc-fea-caveat">A separate mesh-refinement check was reported to leave the peak approximately similar. Its relationship to the displayed runs is unconfirmed.</p>
+    <p className="cnc-fea-caveat"><strong>Analysis detail:</strong> The numerical yield criterion used in the model is not stated in the available evidence.</p>
   </section>
 }
 
@@ -220,16 +220,21 @@ export function CncUprightContent() {
 
     <div id="cnc-competition-takeaways" data-cnc-section className="cnc-case-study__group">
     <header className="case-study-chapter"><span className="eyebrow">06 / CNC UPRIGHT</span><h2>06 — Competition & takeaways</h2><p>The installed view shows the upright in vehicle context. The observed hub failure is documented separately from upright design and FEA.</p></header>
-    <Editorial id="installed-hardware-title" eyebrow="06 / INSTALLED HARDWARE" title="Upright in the vehicle" caption="Upright shown with assembled wheel-end and brake hardware on the competition vehicle." figure={<img className="baja-editorial-image baja-editorial-image--installed" src={sitePath('/Upright%20Hardware%20Assembly%20picture.jpg')} alt="Front upright installed with wheel-end and brake hardware on the Baja vehicle" loading="lazy" />} reverse>
+    <Editorial id="installed-hardware-title" eyebrow="06 / INSTALLED HARDWARE" title="Upright in the vehicle" caption="Machined front upright installed within the suspension, brake, and wheel assembly." figure={<img className="baja-editorial-image baja-editorial-image--installed" src={sitePath('/assets/projects/baja/installed-upright-wheel-end-workshop.jpg')} alt="Machined front upright installed inside the wheel envelope, connected to the control arms, brake, and tire" width={1200} height={992} loading="lazy" />} reverse>
       <p className="baja-detail-copy">The installed view shows how the front upright sits within the vehicle’s wheel-end and suspension packaging. The pictured hub is a separate component; I designed the upright, not the hub.</p>
     </Editorial>
 
-    <Editorial id="cnc-assembly-feedback-title" eyebrow="PROTOTYPE ASSEMBLY / BEFORE FINAL MACHINING" title="Resolve fit issues on printed prototypes">
+    <Editorial id="cnc-assembly-feedback-title" eyebrow="PROTOTYPE ASSEMBLY / BEFORE FINAL MACHINING" title="Resolve fit issues on printed prototypes" caption="Connecting the 3D-printed front upright prototype to the control arms during wheels-down assembly." figure={<img className="baja-editorial-image baja-editorial-image--assembly-photo" src={sitePath('/assets/projects/baja/prototype-upright-assembly.jpg')} alt="Team members connecting the white 3D-printed front upright prototype to the vehicle’s control arms" width={1200} height={939} loading="lazy" />}>
       <p className="baja-detail-copy">Before final machining, I 3D printed both front uprights and checked assembly with bolts, misalignment spacers, and the tie rod. I enlarged a difficult-to-access nut pocket, resized the tie-rod arm hole, and confirmed the weld-cup clearance cutout on the prototypes. These fit corrections were made before the final machined parts.</p>
       <p className="baja-detail-copy">Separately, the weld-cup, spherical bearing, and misalignment spacer interfered at suspension droop, leaving only a few degrees of steering in that position. Sanding the spacer helped only partly. With the car supported on a table, we raised the front control arms approximately two inches from their hanging position and fitted limit straps to restrict suspension extension. Steering clearance improved within that restricted travel envelope; the straps did not correct dimensional tolerances, and the approximate arm movement is not an exact wheel-travel reduction.</p>
     </Editorial>
 
-    <section id="competition-feedback" className="baja-detail-section baja-failure-note" aria-labelledby="competition-feedback-title"><span className="eyebrow">COMPETITION EXPERIENCE / SEPARATE COMPONENT</span><h3 id="competition-feedback-title">Front-left hub failure</h3><p className="baja-detail-copy">During the 2026 Baja SAE Ohio competition, the front-left hub sheared off. I designed the front upright, not the hub. The event also involved a collision with another driver; available information does not establish whether the collision caused or contributed to the failure. Fatigue is only a suspected, unconfirmed mechanism.</p><p className="baja-comparison__note">This observed hub failure is documented separately from the CNC upright’s structural FEA iterations and the assembly-clearance feedback above. No claim is made that the upright analysis predicted, prevented, caused, or validated the hub failure.</p></section>
+    <section id="competition-feedback" className="baja-detail-section baja-failure-note" aria-labelledby="competition-feedback-title">
+      <div className="baja-editorial-row">
+        <figure className="baja-editorial-figure"><img className="baja-editorial-image baja-editorial-image--competition" src={sitePath('/assets/projects/baja/competition-vehicle-thumbs-up.jpg')} alt="Baja vehicle at competition with a driver inside giving a thumbs-up; the CNC-machined front uprights are installed" width={1600} height={998} loading="lazy" /><figcaption>The Baja vehicle at competition with my CNC-machined front uprights installed.</figcaption></figure>
+        <div className="baja-editorial-copy"><span className="eyebrow">COMPETITION EXPERIENCE / SEPARATE COMPONENT</span><h3 id="competition-feedback-title" className="baja-failure-note__title">Front-left hub failure</h3><p className="baja-detail-copy">During the 2026 Baja SAE Ohio competition, the front-left hub sheared off. I designed the front upright, not the hub. The event also involved a collision with another driver; available information does not establish whether the collision caused or contributed to the failure. Fatigue is only a suspected, unconfirmed mechanism.</p><p className="baja-comparison__note">This observed hub failure is documented separately from the CNC upright’s structural FEA iterations and the assembly-clearance feedback above. No claim is made that the upright analysis predicted, prevented, caused, or validated the hub failure.</p></div>
+      </div>
+    </section>
     </div>
     </article>
   </div>

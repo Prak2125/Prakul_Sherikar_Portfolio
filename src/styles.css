@@ -547,6 +547,7 @@ body::before { opacity: .055; }
 .baja-hub__role > span:last-child { max-width: 520px; color: #68665f; font-size: 11px; line-height: 1.65; }
 .baja-hub__figure { overflow: hidden; margin: 0; padding: 12px; border: 1px solid #ded9d0; border-radius: 14px; background: #eeece6; }
 .baja-hub__figure img { display: block; width: 100%; height: min(39vw, 430px); object-fit: contain; }
+.baja-hub__figure--scenic img { height: auto; max-height: 430px; }
 .baja-hub__figure figcaption { padding: 9px 4px 2px; color: #65625b; font-size: 10px; }
 .baja-projects, .baja-workflow { padding-top: 43px; }
 .baja-hub__section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
@@ -682,6 +683,7 @@ body::before { opacity: .055; }
 .baja-cad-export-note code { padding: 2px 4px; border-radius: 3px; background: #f0eee8; font-size: 9px; overflow-wrap: anywhere; }
 .baja-failure-note { padding: 18px; border: 1px solid #ded8ce; border-radius: 10px; background: #f8f6f1; }
 .baja-failure-note > .eyebrow { color: #76563f; }
+.baja-failure-note__title { margin: 0 0 10px; font-size: clamp(20px, 2.3vw, 27px); letter-spacing: -.045em; }
 
 /* Recruiter-facing Baja summary */
 .baja-snapshot { display: grid; grid-template-columns: minmax(200px, .9fr) minmax(250px, 1fr) minmax(220px, .9fr); gap: 22px; align-items: center; margin-top: 20px; padding: 20px; border: 1px solid #ded8ce; border-radius: 11px; background: #fffefa; }
@@ -1027,6 +1029,7 @@ body::before { opacity: .055; }
   .baja-hub__hero > div, .baja-hub__figure { min-width: 0; }
   .baja-hub__figure { width: 100%; max-width: 100%; }
   .baja-hub__figure img { height: 340px; }
+  .baja-hub__figure--scenic img { height: auto; max-height: 340px; }
   .baja-projects, .baja-workflow { padding-top: 30px; }
   .baja-hub__section-heading { display: grid; gap: 7px; }
   .baja-hub__section-heading > p { max-width: 100%; }

@@ -15,7 +15,7 @@ export function ProjectCard({ project, compact = false }: ProjectCardProps) {
     <article className={`project-card${project.featured ? ' project-card--featured' : ''}${project.status === 'Upcoming' ? ' project-card--upcoming' : ''}${compact ? ' project-card--compact' : ''}`} id={project.id}>
       {compact && (
         <div className={`project-card__thumbnail${project.visualImage ? ' project-card__thumbnail--image' : ''}`} role="img" aria-label={project.visualImage?.alt ?? project.visualNote}>
-          {project.visualImage ? <img src={project.visualImage.src} alt="" aria-hidden="true" loading="lazy" /> : <>
+          {project.visualImage ? <img src={project.visualImage.src} alt="" aria-hidden="true" width={project.visualImage.width ?? 1200} height={project.visualImage.height ?? 800} loading="lazy" /> : <>
             <div className="visual-grid" aria-hidden="true" />
             <span className="project-card__thumbnail-label">PROJECT / {project.number}</span>
             <span className="project-card__thumbnail-note">{project.visualNote}</span>
@@ -25,7 +25,7 @@ export function ProjectCard({ project, compact = false }: ProjectCardProps) {
       {!compact && (
         <div className="project-card__visual-wrap">
           <div className={`project-card__visual${project.visualImage ? ' project-card__visual--image' : ''}`} aria-label={project.visualImage?.alt ?? project.visualNote} role="img">
-            {project.visualImage && <img src={project.visualImage.src} alt="" aria-hidden="true" loading="lazy" />}
+            {project.visualImage && <img src={project.visualImage.src} alt="" aria-hidden="true" width={project.visualImage.width ?? 1200} height={project.visualImage.height ?? 800} loading="lazy" />}
             <div className="visual-grid" aria-hidden="true" />
             <span className="visual-index">PROJECT / {project.number}</span>
             <span className="visual-mark" aria-hidden="true">{project.status === 'Upcoming' ? '↗' : '✳'}</span>

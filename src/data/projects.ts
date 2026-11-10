@@ -14,7 +14,7 @@ export interface Project {
   metrics?: { value: string; label: string }[]
   metricContext?: string
   visualNote: string
-  visualImage?: { src: string; alt: string }
+  visualImage?: { src: string; alt: string; width?: number; height?: number }
   featured?: boolean
   workstreams?: { title: string; summary: string }[]
   relatedWork?: { title: string; summary: string; status: ProjectStatus }
@@ -34,10 +34,12 @@ export const projects: Project[] = [
       { value: '15% lower', label: 'front-upright mass vs. original design' },
       { value: '7.15g · 4g · 2g', label: 'vertical, lateral, and braking load assumptions' },
     ],
-    visualNote: 'Isometric CAD rendering of the CNC-machined front upright',
+    visualNote: 'Vehicle portrait · golden trees',
     visualImage: {
-      src: sitePath('/Upright%20CAD%20Isometric%20Image.jpg'),
-      alt: 'Isometric CAD rendering of the complete CNC-machined front upright',
+      src: sitePath('/assets/projects/baja/vehicle-golden-trees.jpg'),
+      alt: 'Longhorn Baja vehicle in a grassy clearing with golden autumn trees behind it',
+      width: 1600,
+      height: 1017,
     },
     featured: true,
     workstreams: [

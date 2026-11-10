@@ -2,7 +2,7 @@ import { PageLayout } from './components/PageLayout'
 import { Pill } from './components/Pill'
 import { sitePath } from './sitePath'
 
-const cncImage = sitePath('/Baja%20Upright%20Picture%20(Machined).jpeg')
+const heroImage = sitePath('/assets/projects/baja/vehicle-golden-trees.jpg')
 const cncCadImage = sitePath('/Upright%20CAD%20Isometric%20Image.jpg')
 
 const frontUprightProjects = [
@@ -72,9 +72,9 @@ function BajaHubPage() {
             <p>Longhorn Baja SAE is a student engineering team developing an off-road vehicle. Its suspension uprights bring structural loading, steering clearance, component integration, and manufacturability into one compact design problem.</p>
             <div className="baja-hub__role"><span className="micro-label">MY ROLE</span><strong>Unsprung Lead</strong><span>My specific design contribution is the front upright, not the hub. My work spans CNC upright design and analysis iterations, wheel-end interfaces, and development of a welded upright concept.</span></div>
           </div>
-          <figure className="baja-hub__figure">
-            <img src={cncImage} alt="Combined front- and rear-facing views of the CNC-machined upright" />
-            <figcaption>Machined upright views · combined image</figcaption>
+          <figure className="baja-hub__figure baja-hub__figure--scenic">
+            <img src={heroImage} alt="Longhorn Baja vehicle in a grassy clearing with golden autumn trees behind it" width={1600} height={1017} loading="eager" />
+            <figcaption>Longhorn Baja vehicle in a scenic setting</figcaption>
           </figure>
         </header>
 
