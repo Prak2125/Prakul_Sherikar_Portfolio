@@ -8,25 +8,25 @@ const cncCadImage = sitePath('/Upright%20CAD%20Isometric%20Image.jpg')
 const frontUprightProjects = [
   {
     title: 'CNC-Machined Upright',
-    status: 'Machined hardware shown',
+    status: 'Manufactured and installed · Baja SAE Ohio 2026',
     href: '/projects/baja-upright/cnc-upright',
     image: cncCadImage,
     imageAlt: 'Isometric CAD rendering of the complete CNC-machined front upright',
-    description: 'Machined front upright in 6061-T6 aluminum, externally made by 3-axis CNC. My work covered CAD, load development, FEA iterations, bearing interfaces, and brake packaging.',
+    description: 'I designed the 6061-T6 upright, incorporated FEA and manufacturing feedback, and delivered it for installation.',
   },
   {
     title: 'Welded Upright',
-    status: 'In Development',
     href: '/projects/baja-upright/welded-upright',
-    description: 'Spindle-based upright concept in development. A vertical spherical-bearing arrangement addresses prior C-arm clearance interference; most fabrication is planned in-house, with spindle sourcing still under review.',
+    status: 'In development',
+    description: 'I am developing a spindle-based backup with vertical spherical-bearing mounting; the manufacturing split is not finalized.',
   },
 ]
 
 const portalResearch = {
   title: 'Portal Upright Research',
-  status: 'Planned · Research Stage',
+  status: 'Not started',
   href: '/projects/baja-upright/portal-upright',
-  description: 'A separate research direction outside the current front-upright development. Requirements and design approach are not yet defined.',
+  description: 'Separate portal-upright study.',
 }
 
 function ProjectCard({ item, index }: { item: (typeof frontUprightProjects)[number] | typeof portalResearch; index: number }) {
@@ -34,12 +34,9 @@ function ProjectCard({ item, index }: { item: (typeof frontUprightProjects)[numb
   const imageAlt = 'imageAlt' in item ? item.imageAlt : undefined
   return (
     <a className={`baja-project-card${image ? ' baja-project-card--cnc' : ''}`} href={sitePath(item.href)}>
-      <span className="baja-project-card__visual">
-        {image && imageAlt ? <img src={image} alt={imageAlt} /> : <span className="baja-project-card__placeholder" aria-hidden="true"><span>{index === 1 ? 'WELDED / CONCEPT' : 'PORTAL / RESEARCH'}</span><span className="baja-placeholder-mark">{index === 1 ? '⌁' : '＋'}</span></span>}
-        <span className="baja-project-card__index">BAJA / 0{index + 1}</span>
-      </span>
+      {image && imageAlt && <span className="baja-project-card__visual"><img src={image} alt={imageAlt} /><span className="baja-project-card__index">BAJA / 0{index + 1}</span></span>}
       <span className="baja-project-card__body">
-        <span className="baja-project-card__meta"><span className="baja-project-card__status">{item.status}</span><span className="baja-project-card__arrow" aria-hidden="true">↗</span></span>
+        <span className="baja-project-card__meta">{!image && <span className="baja-project-card__meta-index">BAJA / 0{index + 1}</span>}<span className={`baja-project-card__status${item.status === 'Not started' ? ' baja-project-card__status--planned' : ''}`}>{item.status}</span><span className="baja-project-card__arrow" aria-hidden="true">↗</span></span>
         <strong>{item.title}</strong>
         <span>{item.description}</span>
         <span className="baja-project-card__action">View project details <span aria-hidden="true">→</span></span>
@@ -69,8 +66,8 @@ function BajaHubPage() {
           <div>
             <span className="eyebrow">PROJECT HUB / VEHICLE SYSTEMS</span>
             <h1>Longhorn Baja SAE</h1>
-            <p>Longhorn Baja SAE is a student engineering team developing an off-road vehicle. Its suspension uprights bring structural loading, steering clearance, component integration, and manufacturability into one compact design problem.</p>
-            <div className="baja-hub__role"><span className="micro-label">MY ROLE</span><strong>Unsprung Lead</strong><span>My specific design contribution is the front upright, not the hub. My work spans CNC upright design and analysis iterations, wheel-end interfaces, and development of a welded upright concept.</span></div>
+            <p>I designed the front upright for Longhorn Baja SAE, balancing structural loading, steering clearance, wheel-end interfaces, and manufacturability for the off-road vehicle.</p>
+            <div className="baja-hub__role"><span className="micro-label">MY ROLE</span><strong>Unsprung Lead</strong><span>I incorporated FEA and manufacturing feedback into the CNC design and delivered hardware installed on the vehicle. The welded backup remains in development. I did not design the hub.</span></div>
           </div>
           <figure className="baja-hub__figure baja-hub__figure--scenic">
             <img src={heroImage} alt="Longhorn Baja vehicle in a grassy clearing with golden autumn trees behind it" width={1600} height={1017} loading="eager" />
@@ -101,7 +98,7 @@ function BajaHubPage() {
 
         <section className="baja-competition-summary" aria-labelledby="baja-competition-title">
           <div><span className="eyebrow">2026 BAJA SAE OHIO</span><h2 id="baja-competition-title">Competition feedback</h2></div>
-          <p>Our team passed technical inspection and completed laps in endurance. The CNC front-upright design was installed on the vehicle. During the event, another driver collided with the vehicle; separately, the front-left hub sheared off. The relationship between the collision and hub failure has not been established, and the failure mechanism remains unverified. <a href={sitePath('/projects/baja-upright/cnc-upright#competition-feedback')}>Read the failure note</a>.</p>
+          <p>Our team passed technical inspection and completed laps in endurance with the CNC front uprights installed. A collision and a subsequent front-left hub fracture were reported during the event; their relationship and the failure mechanism remain unconfirmed. <a href={sitePath('/projects/baja-upright/cnc-upright#competition-feedback')}>Read the account</a>.</p>
         </section>
 
         <section className="baja-projects" aria-labelledby="baja-projects-title">
@@ -117,7 +114,7 @@ function BajaHubPage() {
         <section className="baja-portal-research" aria-labelledby="portal-research-title">
           <div className="baja-hub__section-heading">
             <div><span className="eyebrow">SEPARATE RESEARCH TRACK</span><h2 id="portal-research-title">Portal upright research</h2></div>
-            <p>Early-stage work with requirements and direction still to be defined.</p>
+            <p>A separate research track from the CNC and welded front-upright work.</p>
           </div>
           <div className="baja-project-grid baja-project-grid--research"><ProjectCard item={portalResearch} index={2} /></div>
         </section>
@@ -125,14 +122,14 @@ function BajaHubPage() {
         <section className="baja-workflow" aria-labelledby="baja-workflow-title">
           <div className="baja-hub__section-heading">
             <div><span className="eyebrow">HOW I APPROACH THE WORK</span><h2 id="baja-workflow-title">Engineering workflow</h2></div>
-            <p>This sequence describes my CNC upright workflow; it does not mean every step is complete or validated.</p>
+            <p>This sequence summarizes the CNC design process; the welded backup follows a separate development path.</p>
           </div>
           <ol className="baja-workflow__steps">
             {workflow.map(([label, destination], index) => <li key={label}><a href={sitePath(`/projects/baja-upright/${destination}`)}><span>0{index + 1}</span><strong>{label}</strong><span aria-hidden="true">↗</span></a></li>)}
           </ol>
           <p className="baja-workflow__sequence">CNC path: calculations <span>→</span> initial CAD <span>→</span> FEA <span>→</span> geometry iteration <span>→</span> manufacturability <span>→</span> critical dimensions and tolerance checks</p>
         </section>
-        <p className="baja-workflow__welded-note"><strong>Welded upright uses a separate workflow:</strong> weld joints, spindle integration, bearing arrangement, fabrication, and clearance constraints.</p>
+        <p className="baja-workflow__welded-note"><strong>Welded upright:</strong> active work on weld joints, spindle integration, bearing arrangement, fabrication, and clearance.</p>
         <nav className="project-detail-nav" aria-label="Project navigation"><a className="text-link" href={sitePath('/projects')}>All projects <span aria-hidden="true">↗</span></a><Pill tone="accent">Longhorn Baja SAE</Pill></nav>
       </main>
     </PageLayout>

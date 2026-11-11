@@ -5,7 +5,7 @@ const statusDisplay: Record<ProjectStatusValue, { label: string; className: stri
   'Analysis study': { label: 'Analysis Study', className: 'project-status--study' },
   Completed: { label: 'Completed', className: 'project-status--completed' },
   'In progress': { label: 'In Progress', className: 'project-status--active' },
-  Upcoming: { label: 'Not Started', className: 'project-status--planned' },
+  Upcoming: { label: 'Not started', className: 'project-status--planned' },
 }
 
 interface ProjectStatusProps {

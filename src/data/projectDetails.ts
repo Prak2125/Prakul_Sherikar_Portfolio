@@ -4,7 +4,6 @@ export interface ProjectDetailContent {
   problem: string
   approach: string
   designFocus: string[]
-  evidencePrompt: string
   bajaUpright?: {
     loadCases: { label: string; value: string }[]
     loadCaseRationale: string
@@ -29,29 +28,27 @@ export interface ProjectDetailContent {
 
 export const projectDetails: Record<string, ProjectDetailContent> = {
   'baja-upright': {
-    problem: 'Develop upright designs for the Baja vehicle around suspension loads, wheel clearance, weight, strength, and practical manufacturing constraints.',
-    approach: 'The current work brings two related paths together: CNC-machined uprights and welded backup uprights. The designs are being developed with load cases, FEA iteration, interfaces, and fabrication needs in mind.',
+    problem: 'I designed the front upright to connect the wheel bearing and rotating wheel-end to the suspension, steering, and brakes while balancing structural loading, steering clearance, packaging, mass, and manufacturing constraints.',
+    approach: 'I developed the CNC geometry, evaluated separate lower control-arm and brake-tab revisions with FEA, and incorporated manufacturing feedback. The CNC hardware was manufactured and installed on the vehicle. I am developing the spindle-based welded backup separately.',
     designFocus: [
-      'CNC machining constraints, bearing interfaces, tolerances, and fit considerations',
-      'Suspension load-case development and FEA-guided design iteration',
-      'Weld access, joint design, and fixturing for the backup upright approach',
-      'Packaging and weight, strength, and manufacturability trade-offs',
+      'I developed the CNC geometry and design-load assumptions, then used FEA to guide separate geometry iterations.',
+      'I worked through bearing interfaces, brake packaging, fits, and manufacturing feedback for the CNC upright.',
+      'I am developing a welded backup with a different bearing arrangement and fabrication path.',
     ],
-    evidencePrompt: 'Selected control-arm CAD and FEA screenshots from the supplied PDF are shown on the CNC upright page. Their revision mapping and matching analysis conditions remain unconfirmed; caliper-tab plots and source calculations are not available. No validation claim is made.',
     bajaUpright: {
       loadCases: [
         { label: 'Vertical', value: '7.15g' },
         { label: 'Lateral', value: '4g' },
         { label: 'Braking', value: '2g' },
       ],
-      loadCaseRationale: 'An Excel calculation sheet supported the selected CNC design inputs: 7.15g vertical, 4g lateral, and 2g braking. These assumptions guided the upright analysis; they are not a proven worst-case operating envelope. The later handwritten steady-state cornering calculations belong to the welded upright, and Cornell benchmarking informed a separate reconsideration of loading.',
-      ansysLoadApplication: 'The lower control-arm study combined the vertical, lateral, and braking assumptions in a design analysis case. The available screenshots do not document their force equivalents, load directions and application surfaces, restraints, or iteration-specific solver setup.',
+      loadCaseRationale: 'I used Excel calculations that included weight transfer to determine wheel loads, then selected a severe combined CNC design case based on 7.15g vertical, 4g lateral, and 2g braking assumptions. I used this scenario to assess structural response and guide geometry changes; it is not a proven worst-case envelope or measured competition loading. The later handwritten steady-state cornering calculations belong to the welded upright.',
+      ansysLoadApplication: 'The reported setup identifies three load application locations: the bearing bore, brake-caliper mounting bolt holes, and steering tie-rod bolt holes. The upper and lower control-arm pickup bolt holes were restrained, and the directional loads were applied together in the reported analysis sequence. The available setup record does not map each force direction to an individual application location or specify the ANSYS support type or degrees of freedom.',
       cncManufacturing: 'The CNC-machined upright uses 6061-T6 aluminum and an externally performed 3-axis CNC process.',
       lowerCArm: {
-        initialStress: 'Source case not assigned',
-        revisedStress: 'Source case not assigned',
-        status: 'Source figures available · setup matching unverified',
-        geometryNote: 'ANSYS FEA indicated that the upright’s lower C-arm pickup region was at risk under the analyzed load case. The screenshots provide geometry and result context; the source-label limits and unconfirmed relationships between separate runs are preserved on the CNC case-study page.',
+        initialStress: 'Approximately 470 MPa',
+        revisedStress: '274.05 MPa selected · 317.61 MPa rejected',
+        status: 'Owner-confirmed revision sequence',
+        geometryNote: 'The thicker-wall revision increased peak stress; local refinement around that model produced an approximately similar peak. I rejected it and returned to the reinforced geometry.',
       },
       caliperIteration: [
         { title: '01 / Initial CAD', description: 'The initial upright geometry included pockets around the brake-caliper mounting-tab region.' },
@@ -67,15 +64,13 @@ export const projectDetails: Record<string, ProjectDetailContent> = {
     },
   },
   'cold-plate': {
-    problem: 'Study cooling for a 150 W power-electronics heat input while considering coolant flow, heat transfer, and pressure drop.',
-    approach: 'Use SolidWorks and Ansys Fluent to compare candidate channel geometries and flow rates. Python postprocessing calculates thermal resistance from CFD outputs. The results support a simulation-based geometry selection; experimental validation is not documented.',
+    problem: 'I evaluated cold-plate cooling at a 150 W applied heat input while balancing heat transfer and coolant pressure drop.',
+    approach: 'I used SolidWorks, Ansys Fluent, and Python postprocessing to compare candidate channel geometries and flow rates and calculate thermal resistance from the CFD outputs.',
     designFocus: [
-      'Coolant flow through candidate channel geometries',
-      'Heat transfer under the stated 150 W applied heat input',
-      'Pressure-drop and thermal-performance trade-offs',
-      'Simulation-based comparison; no experimental validation is documented',
+      'I compared coolant flow through candidate channel geometries.',
+      'I evaluated heat transfer under the 150 W applied heat input.',
+      'I weighed pressure drop against thermal performance.',
     ],
-    evidencePrompt: 'Additional CAD and boundary-condition setup images may clarify the simulation setup. The reported energy balance is a numerical consistency check, not experimental validation.',
     coldPlate: {
       requirements: [
         { label: 'Plate envelope', value: '120 × 120 × 15 mm' },
@@ -86,9 +81,9 @@ export const projectDetails: Record<string, ProjectDetailContent> = {
         { label: 'Pressure-drop target', value: '≤ 5 kPa baseline' },
       ],
       method: [
-        'CAD in SolidWorks; CFD in Ansys Fluent.',
-        'Python postprocessing calculated thermal resistance from the CFD outputs.',
-        'Water properties specified at 25 °C; a constant heat flux was applied at the heat-source face.',
+        'I modeled the cold plate in SolidWorks and compared candidate designs in Ansys Fluent.',
+        'I used Python postprocessing to calculate thermal resistance from CFD outputs.',
+        'I specified water properties at 25 °C and applied a constant heat flux at the heat-source face.',
         'The report describes a mass-flow inlet (also noted as a pressure inlet) and a pressure outlet at 0 gauge. The inlet wording is retained as reported because the exact Fluent boundary-condition setup is not otherwise shown.',
         'A mesh-independence comparison reported unchanged displayed peak temperature, pressure drop, and thermal resistance between its fine and extra-fine cases.',
       ],
@@ -108,8 +103,8 @@ export const projectDetails: Record<string, ProjectDetailContent> = {
         { design: 'Pin fin', maxTemperature: '36.342 °C', pressureDrop: '57.2898 Pa', thermalResistance: '0.0756 °C/W', reportedTradeoff: '25% lower thermal resistance; 1.7% higher ΔP' },
         { design: 'Serpentine channel', maxTemperature: '36.759 °C', pressureDrop: '284.459 Pa', thermalResistance: '0.07839 °C/W', reportedTradeoff: '22% lower thermal resistance; 405% higher ΔP' },
       ],
-      selectionNote: 'The report identifies pin-fin as the preferred simulated geometry: approximately 25% lower thermal resistance (about 0.0756 °C/W) and 1.7% higher pressure drop than the optimized straight-channel baseline. The serpentine case showed similar thermal improvement with a much larger pressure-drop increase. These are simulation results, not experimental validation.',
-      heatBalanceNote: 'Using the mass-weighted outlet temperature, the CFD energy-balance check was 149.7 W against 150 W applied, an approximately 0.2% discrepancy. This is a numerical consistency check of the simulation energy accounting, not experimental validation.',
+      selectionNote: 'I selected pin-fin as the preferred simulated geometry: approximately 25% lower thermal resistance (about 0.0756 °C/W) and 1.7% higher pressure drop than the optimized straight-channel baseline. The serpentine case showed similar thermal improvement with a much larger pressure-drop increase. Results are simulation-based; experimental testing has not been completed.',
+      heatBalanceNote: 'Using the mass-weighted outlet temperature, the CFD energy-balance check was 149.7 W against 150 W applied, an approximately 0.2% discrepancy. This is a numerical consistency check of the simulation energy accounting.',
       images: [
         { src: sitePath('/assets/projects/cold-plate/flow-rate-resistance-chart.png'), alt: 'Reported cold-plate thermal resistance plotted against water flow rate', caption: 'Report figure · baseline thermal resistance across the tested flow-rate sweep.' },
         { src: sitePath('/assets/projects/cold-plate/pin-fin-temperature-contour.png'), alt: 'Ansys Fluent temperature contour for the pin-fin cold-plate geometry', caption: 'Ansys Fluent temperature contour · pin-fin geometry · report-reported peak source temperature: 36.342 °C.' },
@@ -118,25 +113,23 @@ export const projectDetails: Record<string, ProjectDetailContent> = {
     },
   },
   'sim-wheel': {
-    problem: 'Design a custom sim-racing steering wheel inspired by the Porsche 963, with a fit check informing the next iteration.',
-    approach: 'Version 1 was modeled in CAD and 3D printed. A fit check surfaced a thumb-reach issue to address in Version 2.',
+    problem: 'I designed a custom sim-racing steering wheel inspired by the Porsche 963 and used a fit check to guide the next iteration.',
+    approach: 'I modeled Version 1 in CAD and 3D printed it. The fit check surfaced a thumb-reach issue for Version 2.',
     designFocus: [
       'CAD development of the custom wheel',
       'Physical prototyping with a 3D-printed Version 1',
       'Ergonomic fit feedback and thumb reach',
       'Iteration planning for Version 2',
     ],
-    evidencePrompt: 'Add genuine Version 1 CAD, print and fit-check photos, and Version 2 revisions when available.',
   },
   chessbot: {
-    problem: 'Improve the mechanical arrangement of a chess-playing robot gantry and its related motion components.',
-    approach: 'Redesigned the gantry around a CoreXY arrangement and refined the electromagnet casing and cartridge along with the pulley system.',
+    problem: 'I improved the mechanical arrangement of a chess-playing robot gantry and its motion components.',
+    approach: 'I redesigned the gantry around a CoreXY arrangement and refined the electromagnet casing, cartridge, and pulley system.',
     designFocus: [
       'CoreXY gantry arrangement',
       'Electromagnet casing and cartridge refinement',
       'Pulley-system refinement',
     ],
-    evidencePrompt: 'Add actual robot, gantry, electromagnet, and pulley-system photos or CAD images when available.',
   },
 }
 

@@ -97,11 +97,11 @@ function ProjectDetailPage({ projectId }: ProjectDetailPageProps) {
                 <div className="baja-work-section__heading">
                   <div>
                     <span className="eyebrow">01 / CNC-MACHINED UPRIGHT</span>
-                    <h2 id="cnc-upright-title">Load development & design iteration</h2>
+                    <h2 id="cnc-upright-title">CNC design & FEA record</h2>
                   </div>
-                  <span className="baja-state">ANSYS iterations · source evidence pending</span>
+                  <span className="baja-state">Manufactured and installed · Baja SAE Ohio 2026</span>
                 </div>
-                <p className="baja-section-intro">The CNC upright work includes two distinct geometry studies: lower C-arm optimization under the selected combined design-load case, and a separate brake-caliper mounting-tab redesign.</p>
+                <p className="baja-section-intro">I evaluated two distinct geometry concerns: the lower control-arm pickup under the selected combined design case and the brake-caliper mounting tabs.</p>
 
                 <CncUprightContent />
               </section>
@@ -160,7 +160,7 @@ function ProjectDetailPage({ projectId }: ProjectDetailPageProps) {
 
             {project.metrics && (
               <section aria-labelledby="project-metrics-title">
-                <span className="eyebrow">{details.bajaUpright ? 'PROJECT FIGURES · PRELIMINARY STATUS LABELED' : 'REPORTED FIGURES'}</span>
+                <span className="eyebrow">{details.bajaUpright ? 'PROJECT FIGURES' : 'REPORTED FIGURES'}</span>
                 <h2 id="project-metrics-title">Available metrics</h2>
                 {project.metricContext && <p className="project-metrics__context">{project.metricContext}</p>}
                 <div className="project-metrics">
@@ -174,12 +174,6 @@ function ProjectDetailPage({ projectId }: ProjectDetailPageProps) {
               </section>
             )}
 
-            <section className="evidence-placeholder" aria-labelledby="project-evidence-title">
-              <span className="eyebrow">PROJECT EVIDENCE</span>
-              <h2 id="project-evidence-title">Images & technical material</h2>
-              <p>{details.evidencePrompt}</p>
-              <span className="evidence-placeholder__note">Placeholder · no project imagery is shown here</span>
-            </section>
           </div>
         </div>
 

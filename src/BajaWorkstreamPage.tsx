@@ -52,7 +52,7 @@ function WeldedUprightContent() {
       <section id="welded-bearing-analysis" className="baja-detail-section welded-bearing-assessment" aria-labelledby="welded-load-title">
         <span className="eyebrow">WELDED UPRIGHT / BEARING ANALYSIS IN PROGRESS</span><h2 id="welded-load-title">Cornering loads & bearing-life assessment</h2>
         <p className="welded-bearing-assessment__lead">What tire load and bearing reactions should the outside-front wheel see during steady-state cornering on flat ground? These handwritten calculations set up a simplified case before the ongoing bearing assessment.</p>
-        <p className="welded-bearing-assessment__status"><strong>Hand calculations complete for this simplified case.</strong> SKF SimPro Quick assessment in progress while software issues are resolved.</p>
+        <p className="welded-bearing-assessment__status">Hand calculations completed for the simplified cornering case; SKF SimPro Quick assessment in progress.</p>
 
         <div className="welded-calculation-row">
           <CalculationFigure src={sitePath('/assets/projects/baja-welded/cornering-assumptions-tire-loads.png')} alt="Original handwritten steady-state cornering calculations, including lateral acceleration, lateral load transfer, outside-front vertical tire load, axial tire load, and a free-body diagram." title="Cornering assumptions and tire loads" />
@@ -94,7 +94,7 @@ function WeldedUprightContent() {
 }
 
 function PortalUprightContent() {
-  return <div className="baja-evidence-placeholder baja-evidence-placeholder--large"><span className="micro-label">PORTAL UPRIGHT / RESEARCH STAGE</span><p>This is a planned, separate research direction. Requirements, concept geometry, and approach are not yet defined.</p></div>
+  return <p className="baja-detail-copy">A separate portal-upright research track.</p>
 }
 
 function BajaWorkstreamPage({ workstream }: BajaWorkstreamPageProps) {
@@ -102,17 +102,17 @@ function BajaWorkstreamPage({ workstream }: BajaWorkstreamPageProps) {
   const isWelded = workstream === 'welded-upright'
   const title = isCnc ? 'CNC-Machined Upright' : isWelded ? 'Welded Upright' : 'Portal Upright Research'
   const summary = isCnc
-    ? 'An upright design and analysis effort, with separate lower C-arm and brake-caliper mounting-tab iterations.'
+    ? 'I designed and delivered CNC hardware installed on the vehicle, incorporating separate lower control-arm and brake-caliper FEA iterations and manufacturing feedback.'
     : isWelded
-      ? 'A spindle-based welded concept with vertical spherical-bearing mounting under development.'
-      : 'A separate planned direction for future upright research; no completed design work is claimed.'
+      ? 'I am developing a spindle-based welded backup with vertical spherical-bearing mounting.'
+      : 'A separate portal-upright research track.'
 
   return (
     <PageLayout page="projects">
       <main id="main" className={`baja-workstream-page section-wrap${isCnc ? ' baja-workstream-page--cnc' : ''}`}>
         <nav className="breadcrumbs" aria-label="Breadcrumb"><a href={sitePath('/')}>Home</a><span aria-hidden="true">/</span><a href={sitePath('/projects')}>Projects</a><span aria-hidden="true">/</span><a href={sitePath('/projects/baja-upright')}>Longhorn Baja SAE</a><span aria-hidden="true">/</span><span aria-current="page">{title}</span></nav>
         <header className="baja-workstream-hero">
-          <div className="baja-workstream-hero__meta"><span className="eyebrow">LONGHORN BAJA SAE / PROJECT 0{isCnc ? '1' : isWelded ? '2' : '3'}</span>{isCnc ? <span className="baja-state">Machined hardware shown</span> : <ProjectStatus status={isWelded ? 'In progress' : 'Upcoming'} inline />}</div>
+          <div className="baja-workstream-hero__meta"><span className="eyebrow">LONGHORN BAJA SAE / PROJECT 0{isCnc ? '1' : isWelded ? '2' : '3'}</span>{isCnc ? <span className="baja-state">Manufactured and installed · Baja SAE Ohio 2026</span> : <ProjectStatus status={isWelded ? 'In progress' : 'Upcoming'} inline />}</div>
           <h1>{title}</h1><p>{summary}</p>
         </header>
         <WorkstreamNavigation current={workstream} />

@@ -106,8 +106,8 @@ function CncControlArmEvidence() {
 
     <div className="cnc-control-arm-summary" aria-label="Lower control-arm design revision summary">
       <div><span>Initial geometry</span><strong>≈470 MPa</strong><small>Reinforcement required</small></div>
-      <div><span>Thicker-wall attempt</span><strong>≈317 MPa</strong><small>Rejected</small></div>
-      <div><span>Selected final geometry</span><strong>≈274 MPa</strong><small>Retained after reverting</small></div>
+      <div><span>Reinforced geometry</span><strong>274.05 MPa</strong><small>Selected design</small></div>
+      <div><span>Thicker-wall attempt</span><strong>317.61 MPa</strong><small>Rejected</small></div>
     </div>
 
     <div className="cnc-control-arm-stages">
@@ -120,23 +120,22 @@ function CncControlArmEvidence() {
       </article>
 
       <article className="cnc-control-arm-stage">
-        <div className="cnc-control-arm-stage__copy"><span className="micro-label">02 / THICKER-WALL REVISION — REJECTED</span><h4>Reject the thicker-wall attempt</h4><p>Subsequent reinforcement reduced reported stress, but this revision produced an elevated local peak. I refined the mesh locally around the stress concentration to investigate whether it persisted; the peak remained approximately similar after refinement. This informed my decision to reject the revision and return to the selected geometry. The available evidence does not identify which plotted run received refinement, so I do not assign this check to the 317.61 MPa result.</p></div>
+        <div className="cnc-control-arm-stage__copy"><span className="micro-label">02 / REINFORCED GEOMETRY — SELECTED</span><h4>Retain the reinforced pickup</h4><p>The reinforced geometry reported 274.05 MPa peak von Mises stress, below the 276 MPa yield criterion used in my analysis. I selected the deliberately severe combined case to prioritize survivability during endurance, rather than represent normal driving. I stopped pursuing further stress reduction because the changes I explored added mass. This comparison does not establish safety, fatigue life, or endurance reliability.</p></div>
         <div className="cnc-control-arm-stage__figures">
-          <CncEvidenceFigure src={controlArmFigures.thickerWallCad} alt="CAD close-up of the thicker-wall lower control-arm pickup attempt" caption="CAD · thicker-wall revision" />
-          <CncEvidenceFigure src={controlArmFigures.thickerWallFea} alt="Stress plot with a 317.61 Max marker and contour legend; the result title is cropped from the source" caption="317.61 MPa stress · result title cropped in source" />
+          <CncEvidenceFigure src={controlArmFigures.filletedCad} alt="CAD context of the reinforced lower control-arm pickup geometry selected for the CNC upright" caption="CAD · reinforced geometry" />
+          <CncEvidenceFigure src={controlArmFigures.stress274} alt="Equivalent von Mises stress plot for the reinforced lower control-arm pickup showing a 274.05 MPa maximum" caption="Selected geometry · 274.05 MPa equivalent von Mises stress" />
         </div>
       </article>
 
       <article className="cnc-control-arm-stage">
-        <div className="cnc-control-arm-stage__copy"><span className="micro-label">03 / SELECTED FINAL DESIGN — 274.05 MPa</span><h4>Revert and retain the earlier geometry</h4><p>After rejecting the thicker-wall revision, I reverted to the reinforced geometry that reported 274.05 MPa peak von Mises stress. I had selected a deliberately severe combined load case to prioritize survivability during endurance, rather than represent normal driving conditions. With the result below the yield criterion used in my analysis, I stopped pursuing further stress reduction because the changes I explored added upright mass. This was a trade-off between structural margin and unsprung mass under the selected analysis assumptions.</p></div>
+        <div className="cnc-control-arm-stage__copy"><span className="micro-label">03 / THICKER-WALL REVISION — REJECTED</span><h4>Reject the thicker-wall attempt</h4><p>For a further revision, I thickened the lower portions of both vertical walls of the lower pickup’s C-shaped bracket. Peak stress increased to 317.61 MPa. I locally refined the mesh around that concentration, and the peak remained approximately similar. This did not establish convergence or the physical cause of the increase. I rejected this attempt and reverted to the reinforced 274.05 MPa geometry shown above.</p></div>
         <div className="cnc-control-arm-stage__figures">
-          <CncEvidenceFigure src={controlArmFigures.filletedCad} alt="CAD context of the selected final lower control-arm pickup geometry" caption="CAD context · selected final geometry" />
-          <CncEvidenceFigure src={controlArmFigures.stress274} alt="Equivalent von Mises stress plot for the selected final geometry showing a 274.05 MPa maximum" caption="Selected final design · 274.05 MPa equivalent von Mises stress" />
+          <CncEvidenceFigure src={controlArmFigures.thickerWallCad} alt="CAD close-up of the thicker-wall revision with thicker lower portions of both vertical walls on the lower pickup’s C-shaped bracket" caption="CAD · thicker lower bracket walls" />
+          <CncEvidenceFigure src={controlArmFigures.thickerWallFea} alt="Stress plot showing a 317.61 maximum and contour legend; the source result title is cropped" caption="317.61 MPa · source result title cropped" />
         </div>
       </article>
     </div>
 
-    <p className="cnc-fea-caveat"><strong>Analysis detail:</strong> The numerical yield criterion used in the model is not stated in the available evidence.</p>
   </section>
 }
 
@@ -153,7 +152,7 @@ export function CncUprightContent() {
           <li>Designed the front-upright CAD and developed conservative load assumptions.</li>
           <li>Used ANSYS FEA to guide separate lower control-arm and brake-tab revisions.</li>
           <li>Selected the bearing arrangement and incorporated machinist and assembly feedback.</li>
-          <li>Made the front upright 15% lighter relative to the original design. This is the upright’s mass change, not a claim about the full unsprung assembly.</li>
+          <li>Reduced front-upright mass by 15% relative to the original design.</li>
           <li>My scope was the upright; the hub was a separate component.</li>
         </ul></section>
         <section className="cnc-overview__constraints"><h3>Constraints & design consequences</h3><dl>
@@ -172,7 +171,7 @@ export function CncUprightContent() {
     </section>
 
     <section id="cnc-load-section" data-cnc-section className="baja-detail-section cnc-load-section" aria-labelledby="cnc-load-title">
-      <div className="cnc-load-section__intro"><span className="eyebrow">DESIGN LOAD DEVELOPMENT</span><h2 id="cnc-load-title">02 — Establishing the loads</h2><p className="baja-detail-copy">An Excel calculation sheet supported the selected 7.15g vertical, 4g lateral, and 2g braking inputs. I used them as a combined CNC design case to evaluate structural response and guide geometry changes; they are not a proven worst-case operating envelope. The later handwritten steady-state cornering calculations belong to the welded upright.</p></div>
+      <div className="cnc-load-section__intro"><span className="eyebrow">DESIGN LOAD DEVELOPMENT</span><h2 id="cnc-load-title">02 — Establishing the loads</h2><p className="baja-detail-copy">{detail.loadCaseRationale}</p></div>
       <div className="baja-load-cases">{detail.loadCases.map((load) => <div key={load.label}><span>{load.label}</span><strong>{load.value}</strong></div>)}</div>
       <div className="baja-ansys-note"><span className="micro-label">ANALYSIS SCOPE</span><p>{detail.ansysLoadApplication}</p></div>
       <p className="cnc-load-context">The CNC load case remains its own design assumption. Later hand calculations and ongoing bearing assessment support the welded backup; Cornell benchmarking informed that separate reconsideration. <a href={sitePath('/projects/baja-upright/welded-upright#welded-bearing-analysis')}>Revisiting the loading assumptions for the welded backup</a>.</p>
@@ -232,7 +231,7 @@ export function CncUprightContent() {
     <section id="competition-feedback" className="baja-detail-section baja-failure-note" aria-labelledby="competition-feedback-title">
       <div className="baja-editorial-row">
         <figure className="baja-editorial-figure"><img className="baja-editorial-image baja-editorial-image--competition" src={sitePath('/assets/projects/baja/competition-vehicle-thumbs-up.jpg')} alt="Baja vehicle at competition with a driver inside giving a thumbs-up; the CNC-machined front uprights are installed" width={1600} height={998} loading="lazy" /><figcaption>The Baja vehicle at competition with my CNC-machined front uprights installed.</figcaption></figure>
-        <div className="baja-editorial-copy"><span className="eyebrow">COMPETITION EXPERIENCE / SEPARATE COMPONENT</span><h3 id="competition-feedback-title" className="baja-failure-note__title">Front-left hub failure</h3><p className="baja-detail-copy">During the 2026 Baja SAE Ohio competition, the front-left hub sheared off. I designed the front upright, not the hub. The event also involved a collision with another driver; available information does not establish whether the collision caused or contributed to the failure. Fatigue is only a suspected, unconfirmed mechanism.</p><p className="baja-comparison__note">This observed hub failure is documented separately from the CNC upright’s structural FEA iterations and the assembly-clearance feedback above. No claim is made that the upright analysis predicted, prevented, caused, or validated the hub failure.</p></div>
+        <div className="baja-editorial-copy"><span className="eyebrow">COMPETITION EXPERIENCE / SEPARATE COMPONENT</span><h3 id="competition-feedback-title" className="baja-failure-note__title">Front-left hub failure</h3><p className="baja-detail-copy">Following a collision, the rotor began contacting the caliper, and the driver reported increased resistance to rotation at the left wheel. The hub subsequently fractured and was reported to be very hot. Our team suspects fatigue contributed to the fracture, but the failure mechanism and the collision’s contribution have not been confirmed.</p><p className="baja-comparison__note">I designed the front upright, not the hub. This failure account is separate from the upright’s structural FEA.</p></div>
       </div>
     </section>
     </div>

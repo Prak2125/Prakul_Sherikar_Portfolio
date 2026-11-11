@@ -59,8 +59,8 @@ export function ColdPlateCaseStudy({ data }: { data: ColdPlateData }) {
         <div className="coldplate-study__heading"><span className="eyebrow">GEOMETRY COMPARISON</span><h2 id="coldplate-geometry-title">04 — Geometry comparison</h2></div>
         <h3 className="coldplate-study__subheading">Pin-fin trade-off against straight and serpentine channels</h3>
         <div className="coldplate-comparison-notes" aria-label="Separate optimization comparisons">
-          <article><span className="micro-label">THERMAL RESISTANCE / FLOW BASELINE</span><p>From the original 0.3 L/min baseline to the optimized straight-channel design, thermal resistance fell 21%: <strong>0.1275 → 0.1009 °C/W</strong>.</p></article>
-          <article><span className="micro-label">PRESSURE DROP / 0.75 L/MIN</span><p>Straight-channel and manifold optimization reduced pressure drop 11%: <strong>63.3 → 56.3 Pa</strong>.</p></article>
+          <article><span className="micro-label">THERMAL RESISTANCE / FLOW BASELINE</span><p>I reduced thermal resistance 21% from the original 0.3 L/min baseline to the optimized straight-channel design: <strong>0.1275 → 0.1009 °C/W</strong>.</p></article>
+          <article><span className="micro-label">PRESSURE DROP / 0.75 L/MIN</span><p>At 0.75 L/min, I reduced pressure drop 11% through straight-channel and manifold optimization: <strong>63.3 → 56.3 Pa</strong>.</p></article>
         </div>
         <ResultsTable label="Cold-plate geometry comparison results">
           <thead><tr><th scope="col">Reported design</th><th scope="col">Peak source temp.</th><th scope="col">ΔP</th><th scope="col">Thermal resistance (°C/W)</th><th scope="col">Report comparison</th></tr></thead>
